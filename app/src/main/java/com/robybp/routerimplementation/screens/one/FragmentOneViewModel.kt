@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import com.robybp.routerimplementation.navigation.Router
 import com.robybp.routerimplementation.navigation.RoutingActionSource
 
-class FragmentOneViewModel(private val routingActionSource: RoutingActionSource): ViewModel() {
+class FragmentOneViewModel(private val routingActionSource: RoutingActionSource) : ViewModel() {
 
-    fun goToFragmentTwo(){
+    fun goToFragmentTwo() {
         routingActionSource.dispatch(Router::goToFragmentTwo)
     }
 
-    fun goToFragmentThree(){
+    fun goToFragmentThree() {
         routingActionSource.dispatch(Router::goToFragmentThree)
     }
 }

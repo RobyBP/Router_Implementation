@@ -6,24 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.robybp.routerimplementation.R
-import com.robybp.routerimplementation.navigation.RoutingActionMediator
+import org.koin.android.ext.android.inject
 
 class FragmentOne() : Fragment() {
     private lateinit var fragmentTwoButton: Button
     private lateinit var fragmentThreeButton: Button
 
-    private val model: FragmentOneViewModel by lazy {
-
-        val factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-                FragmentOneViewModel(RoutingActionMediator) as T
-        }
-
-        ViewModelProvider(this, factory).get(FragmentOneViewModel::class.java)
-    }
+    private val model: FragmentOneViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

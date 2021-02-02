@@ -12,21 +12,14 @@ import com.robybp.routerimplementation.R
 import com.robybp.routerimplementation.navigation.RoutingActionMediator
 import com.robybp.routerimplementation.screens.one.FragmentOneViewModel
 import com.robybp.routerimplementation.screens.two.FragmentTwoViewModel
+import org.koin.android.ext.android.inject
 
 class FragmentThree : Fragment() {
 
     private lateinit var fragmentOneButton: Button
     private lateinit var fragmentTwoButton: Button
 
-    private val model: FragmentThreeViewModel by lazy {
-
-        val factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-                FragmentThreeViewModel(RoutingActionMediator) as T
-        }
-
-        ViewModelProvider(this, factory).get(FragmentThreeViewModel::class.java)
-    }
+    private val model: FragmentThreeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

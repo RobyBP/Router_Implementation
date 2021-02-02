@@ -1,6 +1,5 @@
 package com.robybp.routerimplementation.navigation
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.robybp.routerimplementation.R
 import com.robybp.routerimplementation.screens.one.FragmentOne
@@ -10,7 +9,6 @@ import com.robybp.routerimplementation.screens.two.FragmentTwo
 private const val MAIN_CONTAINER = R.id.fl_main
 
 class RouterImpl(
-    private val activity: AppCompatActivity,
     private val fragmentManager: FragmentManager
 ) : Router {
 
@@ -34,5 +32,4 @@ class RouterImpl(
             commit()
         }
     }
-
 }

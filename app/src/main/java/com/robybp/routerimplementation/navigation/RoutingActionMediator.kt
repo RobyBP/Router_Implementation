@@ -2,7 +2,7 @@ package com.robybp.routerimplementation.navigation
 
 import java.util.*
 
-object RoutingActionMediator: RoutingActionSource {
+class RoutingActionMediator : RoutingActionSource {
 
     private var activeActionConsumer: RoutingActionConsumer? = null
     private val queuedActions = LinkedList<QueuedAction>()
@@ -16,18 +16,19 @@ object RoutingActionMediator: RoutingActionSource {
     }
 
     override fun dispatch(routingAction: (Router) -> Unit) {
-        if(activeActionConsumer == null){
+        if (activeActionConsumer == null) {
             queuedActions.add(QueuedAction(routingAction))
-        }else{
+        } else {
             queuedActions.add(QueuedAction(routingAction))
             flushQueue()
         }
     }
 
-    private fun flushQueue(){
-        while(!queuedActions.isEmpty()){
+    private fun flushQueue() {
+        while (!queuedActions.isEmpty()) {
             activeActionConsumer!!.onRoutingAction(queuedActions.poll().routingAction)
         }
     }
-class QueuedAction(val routingAction: (Router) -> Unit)
+
+    class QueuedAction(val routingAction: (Router) -> Unit)
 }
