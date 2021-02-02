@@ -1,4 +1,4 @@
-package com.robybp.routerimplementation.fragments
+package com.robybp.routerimplementation.screens.one
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.robybp.routerimplementation.MainActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.robybp.routerimplementation.R
+import com.robybp.routerimplementation.navigation.RoutingActionMediator
 
 class FragmentOne() : Fragment() {
     private lateinit var fragmentTwoButton: Button
     private lateinit var fragmentThreeButton: Button
+
+    private val model: FragmentOneViewModel by lazy {
+
+        val factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+                FragmentOneViewModel(RoutingActionMediator) as T
+        }
+
+        ViewModelProvider(this, factory).get(FragmentOneViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,10 +39,11 @@ class FragmentOne() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         fragmentTwoButton.setOnClickListener {
-
+            model.goToFragmentTwo()
         }
 
         fragmentThreeButton.setOnClickListener {
+            model.goToFragmentThree()
         }
 
         super.onViewCreated(view, savedInstanceState)
